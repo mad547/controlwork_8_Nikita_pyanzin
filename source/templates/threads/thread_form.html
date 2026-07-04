@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<div class="forum-card form-card-lg mx-auto">
+    <div class="forum-card-header text-center">
+        {% if object %}Редактировать тему{% else %}Новая тема{% endif %}
+    </div>
+    <div class="p-4">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {% bootstrap_form form layout="floating" %}
+            <div class="d-flex justify-content-between mt-3">
+                <a href="{% url 'threads:index' %}" class="btn-forum-outline">Отмена</a>
+                <button type="submit" class="btn-forum">
+                    {% if object %}Сохранить{% else %}Создать{% endif %}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

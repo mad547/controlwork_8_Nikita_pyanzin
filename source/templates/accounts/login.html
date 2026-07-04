@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<div class="forum-card form-card-sm my-5">
+    <div class="forum-card-header text-center">Вход на форум</div>
+    <div class="p-4">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {% bootstrap_form form layout="floating" %}
+            <button type="submit" class="btn-forum w-100 mt-3">Войти</button>
+        </form>
+    </div>
+    <div class="forum-card-footer text-center">
+        Нет аккаунта? <a href="{% url 'accounts:register' %}" class="author-link">Зарегистрируйтесь</a>
+    </div>
+</div>
+{% endblock %}

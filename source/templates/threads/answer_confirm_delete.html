@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="forum-card form-card-md mx-auto">
+    <div class="forum-card-header text-center">Удаление ответа</div>
+    <div class="p-4 text-center">
+        <p class="fs-5">Вы уверены что хотите удалить ответ?</p>
+        <p class="fw-bold text-muted">{{ answer.content|truncatechars:100 }}</p>
+    </div>
+    <div class="forum-card-footer d-flex justify-content-between">
+        <a href="{% url 'threads:thread_detail' answer.thread.pk %}" class="btn-forum-outline">Отмена</a>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn-forum-danger">Удалить</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

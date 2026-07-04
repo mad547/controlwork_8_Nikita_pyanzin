@@ -1,9 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-from django.db.models.fields import PositiveIntegerField
 
 
-# Create your models here.
 class Thread(models.Model):
     title = models.CharField(
         max_length=300,
@@ -26,7 +24,7 @@ class Thread(models.Model):
         auto_now_add=True,
         verbose_name='Дата создания'
     )
-    answers_count = PositiveIntegerField(
+    answers_count = models.PositiveIntegerField(
         default=0,
         verbose_name='Количество ответов'
     )
@@ -71,4 +69,4 @@ class Answer(models.Model):
         db_table = 'answer'
         verbose_name = 'Ответ'
         verbose_name_plural = 'Ответы'
-        ordering = ['-created_at']
+        ordering = ['created_at']

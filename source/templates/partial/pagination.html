@@ -1,0 +1,13 @@
+{% if is_paginated %}
+<div class="pagination-forum">
+    {% if page_obj.has_previous %}
+        <a href="?{% if query %}query={{ query }}&{% endif %}page=1">« Начало</a>
+        <a href="?{% if query %}query={{ query }}&{% endif %}page={{ page_obj.previous_page_number }}">Назад</a>
+    {% endif %}
+    <span class="current">{{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+        <a href="?{% if query %}query={{ query }}&{% endif %}page={{ page_obj.next_page_number }}">Далее</a>
+        <a href="?{% if query %}query={{ query }}&{% endif %}page={{ page_obj.paginator.num_pages }}">Конец »</a>
+    {% endif %}
+</div>
+{% endif %}

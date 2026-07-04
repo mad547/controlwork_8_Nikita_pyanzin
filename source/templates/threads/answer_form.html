@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<div class="forum-card form-card-lg mx-auto">
+    <div class="forum-card-header text-center">Редактировать ответ</div>
+    <div class="p-4">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {% bootstrap_form form layout="floating" %}
+            <div class="d-flex justify-content-between mt-3">
+                <a href="{% url 'threads:thread_detail' object.thread.pk %}" class="btn-forum-outline">Отмена</a>
+                <button type="submit" class="btn-forum">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

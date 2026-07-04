@@ -10,6 +10,7 @@ app_name = 'threads'
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('thread/create/', ThreadCreateView.as_view(), name='thread_create'),
+    path('thread/<int:pk>/', ThreadDetailView.as_view(), name='thread_detail'),
     path('thread/<int:pk>/update/', ThreadUpdateView.as_view(), name='thread_update'),
     path('thread/<int:pk>/delete/', ThreadDeleteView.as_view(), name='thread_delete'),
     path('thread/<int:pk>/answer/', AnswerCreateView.as_view(), name='answer_create'),

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="forum-card mb-4">
+    <div class="forum-card-header d-flex justify-content-between align-items-center">
+        <span>{{ thread.title }}</span>
+        <div class="d-flex gap-2">
+            {% if request.user == thread.author or perms.threads.change_thread %}
+                <a href="{% url 'threads:thread_update' thread.pk %}" class="btn-forum-outline btn-sm">Изменить</a>
+            {% endif %}
+            {% if request.user == thread.author or perms.threads.delete_thread %}
+                <a href="{% url 'threads:thread_delete' thread.pk %}" class="btn-forum-danger btn-sm">Удалить</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="p-4">
+        <div class="thread-meta mb-2">
+            <a href="{% url 'accounts:profile' thread.author.pk %}" class="author-link">
+                {{ thread.author.username }}
+            </a>
+            — {{ thread.created_at|date:'d.m.Y H:i' }}
+        </div>
+        <p class="mb-0">{{ thread.content }}</p>
+    </div>
+</div>
+
+<h5 class="page-title mb-3">Ответы ({{ thread.answers_count }})</h5>
+
+{% for answer in answers %}
+<div class="answer-card">
+    <div class="d-flex gap-3">
+        {% if answer.author.profile.avatar %}
+            <img src="{{ answer.author.profile.avatar.url }}" class="avatar-sm" alt="avatar">
+        {% endif %}
+        <div class="flex-grow-1">
+            <div class="d-flex justify-content-between align-items-start">
+                <div>
+                    <a href="{% url 'accounts:profile' answer.author.pk %}" class="author-link">
+                        {{ answer.author.username }}
+                    </a>
+                    <span class="msg-count-badge ms-2">{{ answer.author.profile.messages_count }} сообщений</span>
+                    <div class="thread-meta">{{ answer.created_at|date:'d.m.Y H:i' }}</div>
+                </div>
+                <div class="d-flex gap-2">
+                    {% if request.user == answer.author or perms.threads.change_answer %}
+                        <a href="{% url 'threads:answer_update' answer.pk %}" class="btn-forum-outline btn-sm">Изменить</a>
+                    {% endif %}
+                    {% if request.user == answer.author or perms.threads.delete_answer %}
+                        <a href="{% url 'threads:answer_delete' answer.pk %}" class="btn-forum-danger btn-sm">Удалить</a>
+                    {% endif %}
+                </div>
+            </div>
+            <p class="mt-2 mb-0">{{ answer.content }}</p>
+        </div>
+    </div>
+</div>
+{% empty %}
+<div class="forum-card p-4 text-muted text-center mb-3">Ответов пока нет</div>
+{% endfor %}
+
+{% include 'partial/pagination.html' %}
+
+{% if request.user.is_authenticated %}
+<div class="forum-card mt-4">
+    <div class="forum-card-header">Написать ответ</div>
+    <div class="p-4">
+        <form method="POST" action="{% url 'threads:answer_create' thread.pk %}">
+            {% csrf_token %}
+            {{ answer_form.content }}
+            <button type="submit" class="btn-forum mt-3">Отправить</button>
+        </form>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

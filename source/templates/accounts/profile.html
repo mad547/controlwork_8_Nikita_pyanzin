@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="forum-card">
+    <div class="forum-card-header">Личный кабинет</div>
+    <div class="p-4 d-flex gap-4 align-items-center">
+        {% if profile_user.profile.avatar %}
+            <img src="{{ profile_user.profile.avatar.url }}" class="avatar-lg" alt="avatar">
+        {% endif %}
+        <div>
+            <h3 class="page-title">{{ profile_user.username }}</h3>
+            <p class="text-muted mb-1">Email: {{ profile_user.email }}</p>
+            <p class="mb-0">
+                Сообщений на форуме:
+                <span class="msg-count-badge">{{ profile_user.profile.messages_count }}</span>
+            </p>
+        </div>
+    </div>
+</div>
+
+<h4 class="page-title mb-3">Темы пользователя</h4>
+<div class="forum-card">
+    {% for thread in threads %}
+    <div class="thread-row">
+        <div class="flex-grow-1">
+            <a href="{% url 'threads:thread_detail' thread.pk %}" class="thread-title">
+                {{ thread.title }}
+            </a>
+            <div class="thread-meta mt-1">
+                {{ thread.created_at|date:'d.m.Y H:i' }} — ответов: {{ thread.answers_count }}
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="p-4 text-muted text-center">Тем пока нет</div>
+    {% endfor %}
+</div>
+{% endblock %}
