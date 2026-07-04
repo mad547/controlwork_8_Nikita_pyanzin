@@ -9,13 +9,12 @@ from accounts.forms import RegisterForm
 from accounts.models import Profile
 
 
-# Create your views here.
 class UserLoginView(LoginView):
     template_name = 'accounts/login.html'
     redirect_authenticated_user = True
 
     def get_success_url(self):
-        return reverse_lazy('index')
+        return reverse_lazy('threads:index')
 
 
 class UserLogoutView(LogoutView):
@@ -37,7 +36,7 @@ class RegisterView(CreateView):
                 avatar=form.cleaned_data['avatar'],
             )
             login(request, user)
-            return redirect('index')
+            return redirect('threads:index')
         return self.render_to_response(self.get_context_data(form=form))
 
 
