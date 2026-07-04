@@ -18,7 +18,7 @@ class UserLoginView(LoginView):
 
 
 class UserLogoutView(LogoutView):
-    next_page = 'index'
+    next_page = 'threads:index'
 
 
 class RegisterView(CreateView):

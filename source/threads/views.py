@@ -79,7 +79,7 @@ class ThreadDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Thread
     template_name = 'threads/thread_confirm_delete.html'
     context_object_name = 'thread'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('threads:index')
 
     def test_func(self):
         thread = self.get_object()
