@@ -3,12 +3,12 @@ from django.db.models import Q
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.core.paginator import Paginator
 
 from threads.forms import ThreadForm, AnswerForm, SearchForm
 from threads.models import Thread, Answer
 
 
-# Create your views here.
 class IndexView(ListView):
     template_name = 'threads/index.html'
     context_object_name = 'threads'
@@ -38,7 +38,13 @@ class ThreadDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['answers'] = self.object.answers.order_by('created_at')
+        answers = self.object.answers.order_by('created_at')
+        paginator = Paginator(answers, 10)
+        page_number = self.request.GET.get('page', 1)
+        page_obj = paginator.get_page(page_number)
+        context['answers'] = page_obj
+        context['page_obj'] = page_obj
+        context['is_paginated'] = page_obj.has_other_pages()
         context['answer_form'] = AnswerForm()
         return context
 

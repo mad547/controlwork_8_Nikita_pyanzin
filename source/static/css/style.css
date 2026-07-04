@@ -1,0 +1,238 @@
+body {
+    background-color: #f4f6f8;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar-forum {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+}
+
+.forum-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    margin-bottom: 16px;
+    background: white;
+}
+
+.forum-card-header {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: white;
+    border-radius: 12px 12px 0 0;
+    padding: 14px 20px;
+    font-weight: 600;
+}
+
+.forum-card-footer {
+    background: #f8f9fa;
+    border-radius: 0 0 12px 12px;
+    border-top: 1px solid #eee;
+    padding: 12px 20px;
+}
+
+.btn-forum {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    padding: 7px 18px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.btn-forum:hover {
+    background: linear-gradient(135deg, #764ba2, #667eea);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102,126,234,0.4);
+}
+
+.btn-forum-outline {
+    border: 2px solid #667eea;
+    color: #667eea;
+    border-radius: 8px;
+    padding: 6px 16px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    background: transparent;
+}
+
+.btn-forum-outline:hover {
+    background: #667eea;
+    color: white;
+}
+
+.btn-forum-danger {
+    background: linear-gradient(135deg, #e53e3e, #c53030);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    padding: 7px 18px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.btn-forum-danger:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(220,53,69,0.4);
+    color: white;
+}
+
+.thread-row {
+    display: flex;
+    align-items: center;
+    padding: 14px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.2s;
+}
+
+.thread-row:hover {
+    background: #f0f4ff;
+}
+
+.thread-row:last-child {
+    border-bottom: none;
+}
+
+.thread-title {
+    font-weight: 600;
+    color: #1a1a2e;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.thread-title:hover {
+    color: #667eea;
+}
+
+.thread-meta {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.answer-card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+    margin-bottom: 12px;
+    background: white;
+    padding: 16px 20px;
+}
+
+.avatar-sm {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.avatar-lg {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.author-link {
+    font-weight: 600;
+    color: #667eea;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.author-link:hover {
+    color: #764ba2;
+}
+
+.msg-count-badge {
+    background: #667eea;
+    color: white;
+    border-radius: 20px;
+    padding: 2px 10px;
+    font-size: 0.78rem;
+}
+
+.input-forum {
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    padding: 8px 14px;
+    transition: border-color 0.2s;
+}
+
+.input-forum:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102,126,234,0.15);
+}
+
+.page-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a2e;
+}
+
+.pagination-forum {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination-forum a, .pagination-forum span {
+    padding: 6px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.pagination-forum a {
+    background: #667eea;
+    color: white;
+}
+
+.pagination-forum a:hover {
+    background: #764ba2;
+    color: white;
+}
+
+.pagination-forum .current {
+    background: #1a1a2e;
+    color: white;
+}
+
+.thread-col-date {
+    width: 120px;
+}
+
+.thread-col-author {
+    width: 120px;
+}
+
+.thread-col-answers {
+    width: 80px;
+}
+
+.thread-header-row {
+    background: #f8f9fa;
+    border-radius: 12px 12px 0 0;
+}
+
+.form-card-sm {
+    max-width: 420px;
+    margin: auto;
+}
+
+.form-card-md {
+    max-width: 500px;
+    margin: auto;
+}
+
+.form-card-lg {max-width: 700px;
+    margin: auto;
+}
